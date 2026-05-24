@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Project Showcase">
+  <defs>
+    <linearGradient id="mark" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8fafc" />
+      <stop offset="0.52" stop-color="#7dd3fc" />
+      <stop offset="1" stop-color="#22c55e" />
+    </linearGradient>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a" />
+      <stop offset="1" stop-color="#020617" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)" />
+  <path
+    d="M18 18.5C18 15.46 20.46 13 23.5 13h17C43.54 13 46 15.46 46 18.5v27C46 48.54 43.54 51 40.5 51h-17C20.46 51 18 48.54 18 45.5v-27Z"
+    fill="none"
+    stroke="url(#mark)"
+    stroke-width="4"
+  />
+  <path
+    d="M25 26.5h14M25 33h14M25 39.5h8"
+    fill="none"
+    stroke="#f8fafc"
+    stroke-linecap="round"
+    stroke-width="4"
+  />
+</svg>

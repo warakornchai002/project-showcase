@@ -2,14 +2,20 @@ import type { Metadata } from "next";
 import { projects } from "@/data/projects";
 
 const stats = [
-  { label: "Completed projects", value: `${projects.length} live builds` },
-  { label: "Focus areas", value: "Product • Design • UX" },
-  { label: "Deployment target", value: "Vercel" },
+  { label: "โปรเจกต์ที่เสร็จแล้ว", value: `${projects.length} ผลงานออนไลน์` },
+  { label: "แกนหลักของงาน", value: "Product • Design • UX" },
+  { label: "แพลตฟอร์มเผยแพร่", value: "Vercel" },
 ];
 
 export const metadata: Metadata = {
-  title: "Project Showcase",
-  description: "A curated landing page of completed projects with live Vercel previews.",
+  title: "รวมผลงานเว็บโปรเจกต์",
+  description:
+    "โชว์เคสผลงานเว็บที่เสร็จสมบูรณ์ พร้อมสรุปแนวคิด เทคโนโลยี และลิงก์เปิดชมเวอร์ชันใช้งานจริง",
+};
+
+const statusLabel: Record<(typeof projects)[number]["status"], string> = {
+  Live: "ออนไลน์",
+  Complete: "เสร็จสมบูรณ์",
 };
 
 export default function Home() {
@@ -23,16 +29,16 @@ export default function Home() {
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(52,211,153,0.7)]" />
-              Live portfolio of completed builds
+              รวมผลงานที่เปิดใช้งานจริงแล้ว
             </div>
 
             <div className="max-w-3xl space-y-5">
               <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-                Premium project showcases, organized in one elegant landing page.
+                โชว์เคสโปรเจกต์ระดับพรีเมียม จัดวางครบในหน้าเดียวอย่างสง่างาม
               </h1>
               <p className="max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-                Explore completed projects with concise summaries, clear technology
-                signals, and direct links to their deployed Vercel experiences.
+                สำรวจผลงานที่เสร็จสมบูรณ์พร้อมสรุปที่อ่านง่าย เทคโนโลยีที่ใช้ชัดเจน
+                และลิงก์ตรงไปยังประสบการณ์จริงบน Vercel
               </p>
             </div>
 
@@ -41,7 +47,7 @@ export default function Home() {
                 href="#projects"
                 className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
               >
-                Browse projects
+                ดูโปรเจกต์ทั้งหมด
               </a>
               <a
                 href="https://vercel.com"
@@ -49,14 +55,14 @@ export default function Home() {
                 rel="noreferrer noopener"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
               >
-                Hosted on Vercel
+                เผยแพร่บน Vercel
               </a>
             </div>
           </div>
 
           <aside className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
-              Snapshot
+              ภาพรวม
             </p>
             <div className="mt-6 space-y-4">
               {stats.map((stat) => (
@@ -78,15 +84,15 @@ export default function Home() {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-medium uppercase tracking-[0.24em] text-sky-300">
-                Project gallery
+                แกลเลอรีโปรเจกต์
               </p>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-                Every completed project, previewed and ready to open.
+                ทุกผลงานที่เสร็จแล้ว พร้อมเปิดดูได้ทันที
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-slate-400 sm:text-right">
-              Each card reads from local project data, making it easy to add, remove,
-              or update showcase entries without introducing a database.
+              การ์ดแต่ละใบอ่านข้อมูลจากไฟล์โปรเจกต์ในเครื่อง ทำให้เพิ่ม ลบ
+              หรือปรับรายการโชว์เคสได้ง่ายโดยไม่ต้องพึ่งฐานข้อมูล
             </p>
           </div>
 
@@ -105,7 +111,7 @@ export default function Home() {
                   <div className="flex items-center justify-between gap-4">
                     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs font-medium text-slate-200">
                       <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                      {project.status}
+                      {statusLabel[project.status]}
                     </div>
                     <span className="text-sm text-slate-400">0{index + 1}</span>
                   </div>
@@ -132,7 +138,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center justify-between pt-2 text-sm font-medium text-white">
-                    <span className="text-slate-300">Open live preview</span>
+                    <span className="text-slate-300">เปิดดูผลงานจริง</span>
                     <span className="transition-transform group-hover:translate-x-1">↗</span>
                   </div>
                 </div>
